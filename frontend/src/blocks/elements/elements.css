@@ -1,0 +1,16 @@
+.elements {
+    display: flex;
+    flex-wrap: wrap;
+    max-width: 880px;
+    margin: 0 auto;
+    gap: 20px 17px;
+    box-sizing: border-box;
+}
+
+@media screen and (max-width: 918px) {
+    .elements {
+        padding-left: 19px;
+        padding-right: 19px;
+        justify-content: center;
+    }
+}

@@ -1,0 +1,22 @@
+.popup__form-item {
+    width: 358px;
+    padding: 0 0 9px;
+    border-bottom: 1px solid rgba(0, 0, 0, .2);
+    border-top: none;
+    border-right: none;
+    border-left: none;
+    font-family: "Inter", Arial, sans-serif, "Helvetica Neue";
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 17px;
+    font-style: normal;
+    color: #000;
+    box-sizing: border-box;
+    outline: none;
+}
+
+@media screen and (max-width: 700px) {
+    .popup__form-item {
+        width: 238px;
+    }
+}

@@ -1,0 +1,11 @@
+.auth__form-heading {
+    text-align: center;
+    margin: 0 0 50px;
+    height: 29px;
+    font-size: 24px;
+    line-height: 29px;
+    font-family: "Inter", Arial, sans-serif, "Helvetica Neue";
+    font-weight: 900;
+    font-style: normal;
+    text-align: center;
+}

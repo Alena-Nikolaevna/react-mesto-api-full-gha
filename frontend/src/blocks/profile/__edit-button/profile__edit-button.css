@@ -1,0 +1,28 @@
+.profile__edit-button {
+    width: 24px;
+    height: 24px;
+    margin-top: 8px;
+    border: 1px solid #fff;
+    background-image: url(../../../images/Vector-pero.svg);
+    background-repeat: no-repeat;
+    background-size: 10px 10px;
+    background-position: center;
+    background-color: transparent;
+    cursor: pointer;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.profile__edit-button:hover {
+    opacity: .6;
+}
+
+@media screen and (max-width: 700px) {
+    .profile__edit-button {
+       margin-right: auto;
+       background-size: 7.5px 7.5px;
+       width: 18px;
+       height: 18px;
+       margin-bottom: 5px;
+    }
+}

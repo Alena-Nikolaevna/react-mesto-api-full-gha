@@ -1,0 +1,13 @@
+.card__title {
+    max-width: 85%;
+    margin: 0;
+    font-family: "Inter", Arial, sans-serif, "Helvetica Neue";
+    font-size: 24px;
+    font-weight: 900;
+    line-height: 29px;
+    color: #000;
+    font-style: normal;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+}
