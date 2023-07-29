@@ -1,0 +1,22 @@
+.card__delete-bt {
+    width: 18px;
+    height: 19px;
+    background-image: url(../../../images/korzina.svg);
+    background-repeat: no-repeat;
+    background-position: center;
+    background-color: transparent;
+    cursor: pointer;
+    padding: 0;
+    background-size: 100% 100%;
+    position: absolute;
+    border: none;
+    right: 20px;
+    top: 20px;
+    box-sizing: border-box;
+    margin: 0;
+
+}
+
+.card__delete-bt:hover {
+    opacity: .6;
+}
