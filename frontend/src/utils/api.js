@@ -100,9 +100,10 @@ class Api {
 }
 
 const api = new Api({
-  baseUrl: 'https://mesto.nomoreparties.co/v1/cohort-64',
+ // baseUrl: 'https://mesto.nomoreparties.co/v1/cohort-64',
+ baseUrl: "https://api.mesto-ank.nomoreparties.co",
   headers: {
-    authorization: 'cb45d759-f4af-4749-b096-7ca0c6bdc881',
+    // authorization: 'cb45d759-f4af-4749-b096-7ca0c6bdc881',
     'Content-Type': 'application/json'
   }
 });

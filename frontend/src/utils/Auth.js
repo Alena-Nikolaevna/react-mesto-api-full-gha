@@ -10,7 +10,8 @@
 
 • функция checkToken - принимает jwt, отправляет запрос на /users/me и возвращает данные пользователя*/
 
-export const BASE_URL = "https://auth.nomoreparties.co";
+// export const BASE_URL = "https://auth.nomoreparties.co";
+export const BASE_URL = "https://api.mesto-ank.nomoreparties.co";
 
 // ф-ция проверки результата
 function checkResponse(res) {
