@@ -9,9 +9,9 @@ const limiter = require('./middlewares/rateLimit');
 
 const app = express();
 
-const corsMiddlewares = require('./middlewares/cors');
-
 const errorMiddlewares = require('./middlewares/error');
+
+const corsMiddlewares = require('./middlewares/cors');
 const router = require('./routes/index');
 
 // импортируем логгеры
