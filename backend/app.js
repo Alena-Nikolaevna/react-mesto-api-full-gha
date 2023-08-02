@@ -9,7 +9,7 @@ const limiter = require('./middlewares/rateLimit');
 
 const app = express();
 
-const corsMiddleware = require('./middlewares/cors');
+const corsMiddlewares = require('./middlewares/cors');
 
 const errorMiddlewares = require('./middlewares/error');
 const router = require('./routes/index');
@@ -32,7 +32,7 @@ app.use(bodyParser.json());
 // Логгер запросов нужно подключить до всех обработчиков роутов
 app.use(requestLogger); // подключаем логгер запросов
 
-app.use(corsMiddleware);
+app.use(corsMiddlewares);
 
 app.use(router); // обработчиков роутов
 
