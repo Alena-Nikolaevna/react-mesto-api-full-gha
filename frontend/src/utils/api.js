@@ -14,18 +14,24 @@ class Api {
 
   // загружаем информацию о пользователе с сервера
   getUserInfo() {
+    const token = localStorage.getItem('token');
     return fetch(`${this._baseUrl}/users/me`, {
       method: "GET",
-      headers: this._headers,
+      headers: {
+        authorization: `Bearer ${token}`,
+      }
     }).then(this._checkResponse);
   }
 
   // получить список всех карточек в виде массива (GET)
   // загружаем карточки с сервера
   getInitialCards() {
+    const token = localStorage.getItem('token');
     return fetch(`${this._baseUrl}/cards`, {
       method: "GET",
-      headers: this._headers,
+      headers: {
+        authorization: `Bearer ${token}`,
+      }
     }).then(this._checkResponse);
   }
 
