@@ -1,6 +1,6 @@
 class Api {
   constructor(setting) {
-    this._baseUrl = setting.baseUrl;
+    this._address = setting.baseUrl;
     this._headers = setting.headers;
   }
 
@@ -14,37 +14,27 @@ class Api {
 
   // загружаем информацию о пользователе с сервера
   getUserInfo() {
-    const token = localStorage.getItem('token');
-    return fetch(`${this._baseUrl}/users/me`, {
+    return fetch(`${this._address}/users/me`, {
       method: "GET",
-      headers: {
-        authorization: `Bearer ${token}`,
-      }
+      headers: this._headers,
     }).then(this._checkResponse);
   }
 
   // получить список всех карточек в виде массива (GET)
   // загружаем карточки с сервера
   getInitialCards() {
-    const token = localStorage.getItem('token');
-    return fetch(`${this._baseUrl}/cards`, {
+    return fetch(`${this._address}/cards`, {
       method: "GET",
-      headers: {
-        authorization: `Bearer ${token}`,
-      }
+      headers: this._headers,
     }).then(this._checkResponse);
   }
 
   // отправляем/сохраняем данные пользователя на сервер 
   // заменяем данные пользователя
   patchUserInfo(data) {
-    const token = localStorage.getItem('token');
-    return fetch(`${this._baseUrl}/users/me/`, {
+    return fetch(`${this._address}/users/me/`, {
       method: "PATCH",
-      // headers: this._headers,
-      headers: {
-        authorization: `Bearer ${token}`,
-      },
+      headers: this._headers,
       body: JSON.stringify({
         name: data.name,
         about: data.about,
@@ -54,13 +44,9 @@ class Api {
 
   // добавление новой карточки
   createNewCard(data) {
-    const token = localStorage.getItem('token');
-    return fetch(`${this._baseUrl}/cards`, {
+    return fetch(`${this._address}/cards`, {
       method: "POST",
-      // headers: this._headers,
-      headers: {
-        authorization: `Bearer ${token}`,
-      },
+      headers: this._headers,
       body: JSON.stringify({
         link: data.link,
         name: data.name
@@ -70,57 +56,45 @@ class Api {
 
   // удаление карточки
   deleteCard(cardId) {
-    const token = localStorage.getItem('token');
-    return fetch(`${this._baseUrl}/cards/${cardId}`, {
+    return fetch(`${this._address}/cards/${cardId}`, {
       method: "DELETE",
-      //headers: this._headers,
-      headers: {
-        authorization: `Bearer ${token}`,
-      },
+      headers: this._headers,
     }).then(this._checkResponse);
   }
 
   // аватар
   patchUserAvatar(item) {
-    const token = localStorage.getItem('token');
-    return fetch(`${this._baseUrl}/users/me/avatar`, {
+    return fetch(`${this._address}/users/me/avatar`, {
       method: "PATCH",
-      // headers: this._headers,
-      headers: {
-        authorization: `Bearer ${token}`,
-      },
+      headers: this._headers,
       body: JSON.stringify(item)
     }).then(this._checkResponse);
   }
 
   // лайк
   likeCard(cardId) {
-    const token = localStorage.getItem('token');
-    return fetch(`${this._baseUrl}/cards/${cardId}/likes`, {
+    return fetch(`${this._address}/cards/${cardId}/likes`, {
       method: "PUT",
-      // headers: this._headers,
-      headers: {
-        authorization: `Bearer ${token}`,
-      },
+      headers: this._headers,
     }).then(this._checkResponse);
   }
 
   // удаление лайка/дизлайк
   dislikeCard(cardId) {
-    const token = localStorage.getItem('token');
-    return fetch(`${this._baseUrl}/cards/${cardId}/likes`, {
+    // const token = localStorage.getItem('token');
+    return fetch(`${this._address}/cards/${cardId}/likes`, {
       method: "DELETE",
-      // headers: this._headers,
-      headers: {
+      headers: this._headers,
+     /* headers: {
         authorization: `Bearer ${token}`,
-      },
+      },*/
     }).then(this._checkResponse);
   }
 
 
   changeLikeCardStatus(id, isLiked) {
     const token = localStorage.getItem('token');
-    return fetch(`${this._baseUrl}/cards/likes/${id}`, {
+    return fetch(`${this._address}/cards/likes/${id}`, {
       method: isLiked ? 'PUT' : 'DELETE',
       // headers: this._headers,
       headers: {
@@ -137,6 +111,7 @@ const api = new Api({
   baseUrl: "https://api.mesto-ank.nomoreparties.co",
   headers: {
   //  authorization: 'cb45d759-f4af-4749-b096-7ca0c6bdc881',
+    Authorization: `Bearer ${localStorage.getItem('token')}`,
     'Content-Type': 'application/json'
   }
 });

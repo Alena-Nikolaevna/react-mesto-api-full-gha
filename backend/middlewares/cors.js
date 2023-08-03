@@ -24,10 +24,10 @@ const corsMiddlewares = (req, res, next) => {
   if (method === 'OPTIONS') {
     res.header('Access-Control-Allow-Methods', DEFAULT_ALLOWED_METHODS); // разрешаем кросс-доменные запросы любых типов (по умолчанию)
     res.header('Access-Control-Allow-Headers', requestHeaders); // разрешаем кросс-доменные запросы с этими заголовками
-    return res.end(); // завершаем обработку запроса и возвращаем результат клиенту
+    res.end(); // завершаем обработку запроса и возвращаем результат клиенту
   }
 
-  return next();
+  next();
 };
 
 module.exports = corsMiddlewares;
