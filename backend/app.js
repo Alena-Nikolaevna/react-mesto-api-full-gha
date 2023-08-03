@@ -1,6 +1,8 @@
 const express = require('express');
 const mongoose = require('mongoose');
 
+// const cors = require('cors');
+
 const bodyParser = require('body-parser');
 const { errors } = require('celebrate');
 
@@ -22,6 +24,8 @@ app.use(helmet());
 
 // для ограничения кол-ва запросов, для защиты от DoS-атак
 app.use(limiter);
+
+// app.use(cors());
 
 // mongoose.connect('mongodb://localhost:27017/mestodb');
 // подключаемся к серверу mongo

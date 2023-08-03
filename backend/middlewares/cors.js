@@ -17,7 +17,7 @@ const corsMiddlewares = (req, res, next) => {
   // проверяем, что источник запроса есть среди разрешённых
   if (allowedCors.includes(origin)) {
     res.header('Access-Control-Allow-Origin', origin); // устанавливаем заголовок, который разрешает браузеру запросы с этого источника
-    res.header('Access-Control-Allow-Credentials', true);
+    // res.header('Access-Control-Allow-Credentials', true);
   }
 
   // Если это предварительный запрос, добавляем нужные заголовки
