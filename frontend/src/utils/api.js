@@ -94,7 +94,7 @@ class Api {
 
   changeLikeCardStatus(id, isLiked) {
     // const token = localStorage.getItem('token');
-    return fetch(`${this._address}/cards/likes/${id}`, {
+    return fetch(`${this._address}/cards/${id}/likes`, {
       method: isLiked ? 'PUT' : 'DELETE',
        headers: this._headers,
     })
