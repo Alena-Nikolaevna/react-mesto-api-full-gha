@@ -93,13 +93,10 @@ class Api {
 
 
   changeLikeCardStatus(id, isLiked) {
-    const token = localStorage.getItem('token');
+    // const token = localStorage.getItem('token');
     return fetch(`${this._address}/cards/likes/${id}`, {
       method: isLiked ? 'PUT' : 'DELETE',
-      // headers: this._headers,
-      headers: {
-        authorization: `Bearer ${token}`,
-      },
+       headers: this._headers,
     })
       .then(this._checkResponse);
   }
