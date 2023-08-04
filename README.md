@@ -11,6 +11,6 @@
 
 IP-адрес 158.160.98.81
 
-Frontend https://...
+Frontend https://mesto-ank.nomoreparties.co
 
-Backend https://...
+Backend https://api.mesto-ank.nomoreparties.co
