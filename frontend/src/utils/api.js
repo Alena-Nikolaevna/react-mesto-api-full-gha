@@ -12,11 +12,20 @@ class Api {
     return Promise.reject(res.status);
   }
 
+
+  _getHeaders() {
+    const jwt = localStorage.getItem('jwt');
+    return {
+      'Authorization': `Bearer ${jwt}`,
+      ...this._headers,
+    };
+  }
+  
   // загружаем информацию о пользователе с сервера
   getUserInfo() {
     return fetch(`${this._address}/users/me`, {
       method: "GET",
-      headers: this._headers,
+      headers: this._getHeaders(),
     }).then(this._checkResponse);
   }
 
@@ -25,7 +34,7 @@ class Api {
   getInitialCards() {
     return fetch(`${this._address}/cards`, {
       method: "GET",
-      headers: this._headers,
+      headers: this._getHeaders(),
     }).then(this._checkResponse);
   }
 
@@ -34,7 +43,7 @@ class Api {
   patchUserInfo(data) {
     return fetch(`${this._address}/users/me/`, {
       method: "PATCH",
-      headers: this._headers,
+      headers: this._getHeaders(),
       body: JSON.stringify({
         name: data.name,
         about: data.about,
@@ -46,10 +55,11 @@ class Api {
   createNewCard(data) {
     return fetch(`${this._address}/cards`, {
       method: "POST",
-      headers: this._headers,
+      headers: this._getHeaders(),
       body: JSON.stringify({
+        name: data.name,
         link: data.link,
-        name: data.name
+        // name: data.name
       })
     }).then(this._checkResponse);
   }
@@ -58,7 +68,7 @@ class Api {
   deleteCard(cardId) {
     return fetch(`${this._address}/cards/${cardId}`, {
       method: "DELETE",
-      headers: this._headers,
+      headers: this._getHeaders(),
     }).then(this._checkResponse);
   }
 
@@ -66,7 +76,7 @@ class Api {
   patchUserAvatar(item) {
     return fetch(`${this._address}/users/me/avatar`, {
       method: "PATCH",
-      headers: this._headers,
+      headers: this._getHeaders(),
       body: JSON.stringify(item)
     }).then(this._checkResponse);
   }
@@ -75,7 +85,7 @@ class Api {
   likeCard(cardId) {
     return fetch(`${this._address}/cards/${cardId}/likes`, {
       method: "PUT",
-      headers: this._headers,
+      headers: this._getHeaders(),
     }).then(this._checkResponse);
   }
 
@@ -84,7 +94,7 @@ class Api {
     // const token = localStorage.getItem('token');
     return fetch(`${this._address}/cards/${cardId}/likes`, {
       method: "DELETE",
-      headers: this._headers,
+      headers: this._getHeaders(),
      /* headers: {
         authorization: `Bearer ${token}`,
       },*/
@@ -96,7 +106,7 @@ class Api {
     // const token = localStorage.getItem('token');
     return fetch(`${this._address}/cards/${id}/likes`, {
       method: isLiked ? 'PUT' : 'DELETE',
-       headers: this._headers,
+       headers: this._getHeaders(),
     })
       .then(this._checkResponse);
   }
@@ -108,7 +118,7 @@ const api = new Api({
   baseUrl: "https://api.mesto-ank.nomoreparties.co",
   headers: {
   //  authorization: 'cb45d759-f4af-4749-b096-7ca0c6bdc881',
-    Authorization: `Bearer ${localStorage.getItem('token')}`,
+    // Authorization: `Bearer ${localStorage.getItem('token')}`,
     'Content-Type': 'application/json',
   }
 });
