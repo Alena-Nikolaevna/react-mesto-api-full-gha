@@ -13,11 +13,11 @@ const cors = require('cors');
 const helmet = require('helmet');
 const limiter = require('./middlewares/rateLimit');
 const { DB } = require('./utils/config');
-// const { corsMiddlewares } = require('./middlewares/cors');
+const { corsMiddlewares } = require('./middlewares/cors');
 
 const app = express();
 app.use(cors());
-// app.use(corsMiddlewares);
+app.use(corsMiddlewares);
 const errorMiddlewares = require('./middlewares/error');
 
 const router = require('./routes/index');
