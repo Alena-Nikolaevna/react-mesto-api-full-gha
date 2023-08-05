@@ -66,7 +66,7 @@ function App() {
     return auth
       .login(data)
       .then((res) => {
-        localStorage.setItem('jwt', res.token);
+        localStorage.setItem('token', res.token);
         setUserEmail(data.email);
         setIsLoggedIn(true);
         navigate('/', { replace: true });
@@ -93,7 +93,7 @@ function App() {
   }
 
   function handleLogout() {
-    localStorage.removeItem('jwt');
+    localStorage.removeItem('token');
     setIsLoggedIn(false);
     navigate('/sign-in');
   }
@@ -101,7 +101,7 @@ function App() {
   // обработчик проверки пользователяБ, есть ли токен в localStorage
   function handleCheckToken() {
 
-    const jwt = localStorage.getItem("jwt");
+    const jwt = localStorage.getItem("token");
     if (jwt) {
       auth
         .checkToken(jwt)
