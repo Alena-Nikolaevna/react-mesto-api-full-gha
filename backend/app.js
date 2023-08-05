@@ -6,19 +6,21 @@ const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
 const { errors } = require('celebrate');
 
-const { PORT = 3000, MONGODB = 'mongodb://127.0.0.1:27017/mestodb' } = process.env;
+const PORT = 3000;
 
 const cors = require('cors');
+
 const helmet = require('helmet');
 const limiter = require('./middlewares/rateLimit');
+const { DB } = require('./utils/config');
+// const { corsMiddlewares } = require('./middlewares/cors');
 
 const app = express();
 app.use(cors());
+// app.use(corsMiddlewares);
 const errorMiddlewares = require('./middlewares/error');
 
 const router = require('./routes/index');
-
-// const { DEV_DB_HOST } = require('./utils/config');
 
 // импортируем логгеры
 const { requestLogger, errorLogger } = require('./middlewares/logger');
@@ -31,7 +33,7 @@ app.use(limiter);
 
 // mongoose.connect('mongodb://localhost:27017/mestodb');
 // подключаемся к серверу mongo
-mongoose.connect(MONGODB);
+mongoose.connect(DB);
 
 app.use(bodyParser.json());
 

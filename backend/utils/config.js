@@ -1,3 +1,24 @@
+require('dotenv').config();
+
+const {
+  NODE_ENV, JWT_SECRET, DB_HOST,
+} = process.env;
+
+const DEV_SECRET = 'some_secret_key';
+const DEV_DB_HOST = 'mongodb://127.0.0.1:27017/mestodb';
+// 'mongodb://localhost:27017/mestodb';
+
+const DB = NODE_ENV === 'production' && DB_HOST
+  ? DB_HOST : DEV_DB_HOST;
+
+const SECRET_STRING = NODE_ENV === 'production'
+&& JWT_SECRET ? JWT_SECRET : DEV_SECRET;
+
+module.exports = {
+  DB,
+  SECRET_STRING,
+};
+
 // Генерация секрет-ключа в терминале командой:
 // node -e "console.log(require('crypto').randomBytes(32).toString('hex'));"
 /* const { JWT_SECRET = 'JWT_SECRET' } = process.env;
