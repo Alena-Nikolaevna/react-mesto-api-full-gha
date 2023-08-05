@@ -7,6 +7,7 @@ const ConflictError = require('../errors/ConflictError'); // 409
 const BadRequestError = require('../errors/BadRequestError'); // 400
 
 const SALT_ROUNDS = 10;
+const { SECRET_KEY } = require('../utils/constant');
 
 // создаёт пользователя
 const createUser = (req, res, next) => {
@@ -126,7 +127,7 @@ const login = (req, res, next) => {
   return User.findUserByCredentials(email, password)
     .then((user) => {
       // создадим токен
-      const token = jwt.sign({ _id: user._id }, 'some-secret-key', { expiresIn: '7d' });
+      const token = jwt.sign({ _id: user._id }, SECRET_KEY, { expiresIn: '7d' });
       // вернём токен
       res.send({ token });
     })
