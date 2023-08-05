@@ -1,23 +1,31 @@
-require('dotenv').config();
-
 const express = require('express');
+require('dotenv').config();
 const mongoose = require('mongoose');
 
 const bodyParser = require('body-parser');
 const { errors } = require('celebrate');
 
-const PORT = 3000;
+const { PORT = 3000, DEV_DB_HOST = 'mongodb://127.0.0.1:27017/mestodb' } = process.env;
 
 const cors = require('cors');
 
 const helmet = require('helmet');
 const limiter = require('./middlewares/rateLimit');
-const { DB } = require('./utils/config');
-const { corsMiddlewares } = require('./middlewares/cors');
 
 const app = express();
-app.use(cors());
-app.use(corsMiddlewares);
+
+const allowedCors = [
+  'https://mesto-ank.nomoreparties.co',
+  'http://mesto-ank.nomoreparties.co',
+  'http://localhost:3000',
+];
+
+const corsOptions = {
+  origin: allowedCors,
+  optionsSuccessStatus: 200,
+  credentials: true,
+};
+
 const errorMiddlewares = require('./middlewares/error');
 
 const router = require('./routes/index');
@@ -31,9 +39,11 @@ app.use(helmet());
 // для ограничения кол-ва запросов, для защиты от DoS-атак
 app.use(limiter);
 
+app.use(cors(corsOptions));
+
 // mongoose.connect('mongodb://localhost:27017/mestodb');
 // подключаемся к серверу mongo
-mongoose.connect(DB);
+mongoose.connect(DEV_DB_HOST);
 
 app.use(bodyParser.json());
 
