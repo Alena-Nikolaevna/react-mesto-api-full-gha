@@ -1,14 +1,12 @@
-require('dotenv').config();
-
 // Генерация секрет-ключа в терминале командой:
 // node -e "console.log(require('crypto').randomBytes(32).toString('hex'));"
-const { JWT_SECRET = 'JWT_SECRET' } = process.env;
+/* const { JWT_SECRET = 'JWT_SECRET' } = process.env;
 const { DEV_DB_HOST = 'mongodb://127.0.0.1:27017/mestodb' } = process.env;
 
 module.exports = {
   JWT_SECRET,
   DEV_DB_HOST,
-};
+}; */
 
 /*
 // забираем нужные переменные из .env

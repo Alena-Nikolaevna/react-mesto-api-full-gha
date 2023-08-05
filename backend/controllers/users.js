@@ -7,8 +7,9 @@ const ConflictError = require('../errors/ConflictError'); // 409
 const BadRequestError = require('../errors/BadRequestError'); // 400
 
 const SALT_ROUNDS = 10;
-const { JWT_SECRET } = require('../utils/config');
+// const { JWT_SECRET } = require('../utils/config');
 // const { SECRET_KEY } = require('../utils/constant');
+const { JWT_SECRET, NODE_ENV } = process.env;
 
 // создаёт пользователя
 const createUser = (req, res, next) => {
@@ -128,7 +129,7 @@ const login = (req, res, next) => {
   return User.findUserByCredentials(email, password)
     .then((user) => {
       // создадим токен
-      const token = jwt.sign({ _id: user._id }, process.env.NODE_ENV === 'production' ? JWT_SECRET : 'dev-secret', { expiresIn: '7d' });
+      const token = jwt.sign({ _id: user._id }, NODE_ENV === 'production' ? JWT_SECRET : 'dev-secret', { expiresIn: '7d' });
       // вернём токен
       res.send({ token });
     })
