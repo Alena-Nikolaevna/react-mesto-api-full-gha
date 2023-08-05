@@ -35,10 +35,8 @@ app.use(bodyParser.json());
 // Логгер запросов нужно подключить до всех обработчиков роутов
 app.use(requestLogger); // подключаем логгер запросов
 
-app.use(corsMiddlewares);
-
 app.use(router); // обработчиков роутов
-
+app.use(corsMiddlewares);
 // логгер ошибок нужно подключить после обработчиков роутов и до обработчиков ошибок
 app.use(errorLogger); // подключаем логгер ошибок
 

@@ -109,7 +109,7 @@ const api = new Api({
   headers: {
   //  authorization: 'cb45d759-f4af-4749-b096-7ca0c6bdc881',
     Authorization: `Bearer ${localStorage.getItem('token')}`,
-    'Content-Type': 'application/json'
+    'Content-Type': 'application/json',
   }
 });
 
