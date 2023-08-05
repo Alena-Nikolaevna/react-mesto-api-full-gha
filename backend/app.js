@@ -16,7 +16,6 @@ const app = express();
 app.use(cors());
 const errorMiddlewares = require('./middlewares/error');
 
-const corsMiddlewares = require('./middlewares/cors');
 const router = require('./routes/index');
 
 // const { DEV_DB_HOST } = require('./utils/config');
@@ -32,7 +31,6 @@ app.use(limiter);
 
 // mongoose.connect('mongodb://localhost:27017/mestodb');
 // подключаемся к серверу mongo
-// mongoose.connect(DEV_DB_HOST);
 mongoose.connect(MONGODB);
 
 app.use(bodyParser.json());
@@ -47,7 +45,7 @@ app.use(requestLogger); // подключаем логгер запросов
 }); */
 
 app.use(router); // обработчиков роутов
-app.use(corsMiddlewares);
+
 // логгер ошибок нужно подключить после обработчиков роутов и до обработчиков ошибок
 app.use(errorLogger); // подключаем логгер ошибок
 
