@@ -37,11 +37,11 @@ app.use(bodyParser.json());
 // Логгер запросов нужно подключить до всех обработчиков роутов
 app.use(requestLogger); // подключаем логгер запросов
 
-app.get('/crash-test', () => {
+/* app.get('/crash-test', () => {
   setTimeout(() => {
     throw new Error('Сервер сейчас упадёт');
   }, 0);
-});
+}); */
 
 app.use(router); // обработчиков роутов
 app.use(corsMiddlewares);
