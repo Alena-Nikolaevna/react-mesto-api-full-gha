@@ -41,7 +41,6 @@ app.use(limiter);
 
 app.use(cors(corsOptions));
 
-// mongoose.connect('mongodb://localhost:27017/mestodb');
 // подключаемся к серверу mongo
 mongoose.connect(DEV_DB_HOST);
 
