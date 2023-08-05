@@ -11,7 +11,7 @@ const helmet = require('helmet');
 const limiter = require('./middlewares/rateLimit');
 
 const app = express();
-
+app.use(cors());
 const errorMiddlewares = require('./middlewares/error');
 
 const corsMiddlewares = require('./middlewares/cors');
@@ -25,8 +25,6 @@ app.use(helmet());
 
 // для ограничения кол-ва запросов, для защиты от DoS-атак
 app.use(limiter);
-
-app.use(cors());
 
 // mongoose.connect('mongodb://localhost:27017/mestodb');
 // подключаемся к серверу mongo
