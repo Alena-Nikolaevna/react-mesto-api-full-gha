@@ -10,7 +10,8 @@ module.exports = (req, res, next) => {
 
   // Убеждаемся, что он есть или начинается с Bearer
   if (!authorization || !authorization.startsWith('Bearer ')) {
-    throw new UnauthorizedError('Необходима авторизация');
+    next(new UnauthorizedError('Необходима авторизация'));
+    return;
   }
 
   // Если токен на месте, извлечём его.
@@ -25,7 +26,8 @@ module.exports = (req, res, next) => {
     payload = jwt.verify(token, NODE_ENV === 'production' ? JWT_SECRET : 'dev-secret');
   } catch (err) {
     // Отправим ошибку, если не получилось верифицировать
-    throw new UnauthorizedError('Необходима авторизация');
+    next(new UnauthorizedError('Необходима авторизация'));
+    return;
   }
 
   req.user = payload; // добавляет в объект запроса payload токена

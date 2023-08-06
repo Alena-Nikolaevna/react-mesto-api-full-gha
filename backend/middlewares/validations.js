@@ -22,14 +22,14 @@ const signupValidation = celebrate({ // createUser
 
 const updateUserAvatarValidation = celebrate({
   body: Joi.object().keys({
-    avatar: Joi.string().regex(regexUrl),
+    avatar: Joi.string().required().regex(regexUrl),
   }),
 });
 
 const updateUserProfileValidation = celebrate({
   body: Joi.object().keys({
-    name: Joi.string().min(2).max(30),
-    about: Joi.string().min(2).max(30),
+    name: Joi.string().required().min(2).max(30),
+    about: Joi.string().required().min(2).max(30),
   }),
 });
 
